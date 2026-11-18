@@ -67,3 +67,7 @@ def test_display_name_invalid_symbol(monkeypatch):
 def test_display_name_banned(monkeypatch):
     monkeypatch.setattr("builtins.input", lambda _: "root")
     assert check_display_name("alice") == False
+
+def test_display_name_too_long(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda _: "a" * 25)
+    assert check_display_name("alice") == False
